@@ -2,18 +2,18 @@ import React from "react";
 
 const MovieList = (props) => {
   return (
-    <ul>
-      {props.films.map((film, index) => {
+    <div>
+      {props.films.map((film) => {
         return <div>
-          <li key={index}>{film.Title}</li>
-          <p>Rating: {film.Ratings[1].Value}</p>
-          <div class="plot">
+          <h1>{film.Title}</h1>
+          <p>Rating: {film.Ratings[1] ? film.Ratings[1].Value : "No Rating Found"}</p>
+          <div className="plot">
           <h3>Description</h3>
           <p>{film.Plot}</p>
           </div>
         </div>
       })}
-    </ul>
+    </div>
   );
 }
 

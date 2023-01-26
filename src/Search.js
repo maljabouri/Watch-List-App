@@ -8,7 +8,7 @@ const Search = (props) => {
     value={props.searchQuery}
     onChange={props.handleChange}/>
 
-    <button type="submit" onClick={props.clearForm}>Search</button>
+    <button type="submit">Search</button>
     </form>
   </div>
 
