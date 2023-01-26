@@ -37,6 +37,7 @@ class App extends Component {
   
     this.setState({ searchResults: searchResults.data.Search });
     this.setState({ watchList: [...this.state.watchList, updatedMovie] });
+    this.setState({ searchQuery: "" })
   };
 
   handleChange = (e) => {
