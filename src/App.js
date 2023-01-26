@@ -11,7 +11,8 @@ class App extends Component {
     super(props)
     this.state = {
       searchQuery: "",
-      searchResults: []
+      searchResults: [],
+      watchList: []
     };
   }
 
@@ -19,6 +20,7 @@ class App extends Component {
     e.preventDefault();
     const result = await axios.get(`http://www.omdbapi.com/?apikey=302d737f&s=${this.state.searchQuery}`)
     this.setState({ searchResults: result.data.Search })
+    this.setState({ watchList:[...this.state.watchList, result.data.Search[0]] })
   }
 
   handleChange = (e) => {
@@ -31,7 +33,7 @@ class App extends Component {
     return (
       <div>
 
-        <WatchList data={this.props.data} searchQuery={this.state.searchQuery} />
+        <WatchList data={this.props.data} searchResults={this.state.searchResults} watchList={this.state.watchList}/>
         <Recommended />
         <Search 
         searchQuery={this.state.searchQuery} 

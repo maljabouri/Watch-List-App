@@ -1,25 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import MovieList from "./MovieList";
 import MovieDetails from "./MovieDetails";
 
 
-class WatchList extends Component {
-
-  constructor(props){
-    super(props)
-    this.state = {
-      title: this.props.data.Title,
-      details: this.props.data.Plot
-    }
-  }
-  render() {
+const WatchList = (props) => {
   return (
     <div>
-      <MovieList filmTitle={this.state.title}/>
-      <MovieDetails filmDetails={this.state.details}/>
+      <MovieList films={props.watchList}/>
+      <MovieDetails filmDetails={props.details}/>
     </div>
   )
 }
-}
+
 
 export default WatchList

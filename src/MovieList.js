@@ -2,8 +2,12 @@ import React from "react";
 
 const MovieList = (props) => {
   return (
-    <div>{props.filmTitle}</div>
-  )
+      <ul>
+          {props.films.map((film, index) => {
+              return <li key={index}>{film.Title}</li>
+          })}
+      </ul>
+  );
 }
 
 export default MovieList
