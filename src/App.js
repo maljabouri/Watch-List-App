@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WatchList from './Watchlist';
 import Search from "./Search"
 import axios from 'axios';
-
+import Remove from './Remove';
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +48,10 @@ class App extends Component {
     this.setState({ watchList: updatedWatchList });
   }
 
+  removeAll = (e) => {
+    this.setState( { watchList: [] })
+  }
+
   handleRatingChange = (e, id) => {
     e.preventDefault();
     const newRating = this.state.ratingInput; //use the value from the state instead of the props
@@ -89,6 +93,8 @@ class App extends Component {
         searchQuery={this.state.searchQuery} 
         handleSearch={this.handleSearch} 
         handleChange={this.handleChange}/>
+
+        <Remove removeAll={this.removeAll}/>
         
       </div>
     );
