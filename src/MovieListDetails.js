@@ -6,7 +6,7 @@ const MovieListDetails = ({ film }) => {
       <h1>{film.Title}</h1>
       <p>
         Rating:
-        {film.Ratings[2] ? film.Ratings[2].Value : "No Rating Found"}
+        {film.Ratings[2] ? film.Ratings[2].Value : "No Rating Found"} 
       </p>
       <div className="plot">
         <h3>Description</h3>

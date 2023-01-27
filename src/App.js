@@ -18,7 +18,7 @@ class App extends Component {
   }
 
 
-  //Asyncronous function that fetches the first result (of many) from the API and stores it in the watchList state
+  // Asyncronous function that fetches the first result (of many) from the API and stores it in the watchList state
   handleSearch = async (e) => {
     e.preventDefault();
     const searchResults = await axios.get(`http://www.omdbapi.com/?apikey=302d737f&s=${this.state.searchQuery}`);
@@ -30,7 +30,7 @@ class App extends Component {
     // Make another API call using the imdbID as a parameter
     const movieDetails = await axios.get(`http://www.omdbapi.com/?apikey=302d737f&i=${imdbID}`);
   
-    // Use the response data to update the watchList state
+    // Use the response data to update the watchList state and then reset the searchQuery state back to an empty string
     const updatedMovie = {
       ...selectedMovie,
       Plot: movieDetails.data.Plot,
@@ -49,19 +49,30 @@ class App extends Component {
   }
 
 
-  //Function that removes a selected film based on its imdbID 
+  // Function that removes a selected film based on its imdbID 
   removeFilm = (imdbID) => {
     const updatedWatchList = this.state.watchList.filter(movie => movie.imdbID !== imdbID);
     this.setState({ watchList: updatedWatchList });
   }
-
+  
+  // Function that removes all films stored on the watch list app
   removeAll = () => {
     this.setState( { watchList: [] })
   }
+  
+  // Function that handles the input for updating the rating, sets the state ratingInput to whatever value the user enters
+  handleInputChange = (e) => {
+    this.setState({ ratingInput: e.target.value });
+  }
+
+  // Function that uses the data from the above function, it checks that the rating is between 0 and 100, 
+  // if true it maps through the "watchList" array in the state and finds the film object with a matching "imdbID" property 
+  // to the "id" argument passed in. Then, it updates the "Value" property of the film object's "Ratings" array
+  // This allows the user to set their own rating of the film.
 
   handleRatingChange = (e, id) => {
     e.preventDefault();
-    const newRating = this.state.ratingInput; //use the value from the state instead of the props
+    const newRating = this.state.ratingInput; 
     if(newRating < 0 || newRating > 100) {
       alert("Please enter a value between 0 and 100");
     } else {
@@ -80,9 +91,7 @@ class App extends Component {
   }
 
 
-  handleInputChange = (e) => {
-    this.setState({ ratingInput: e.target.value });
-  }
+
   render() {
 
     return (
