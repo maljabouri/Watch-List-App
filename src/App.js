@@ -3,6 +3,7 @@ import WatchList from './Watchlist';
 import Search from "./Search"
 import axios from 'axios';
 import Remove from './Remove';
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +17,8 @@ class App extends Component {
     };
   }
 
+
+  //Asyncronous function that fetches the first result (of many) from the API and stores it in the watchList state
   handleSearch = async (e) => {
     e.preventDefault();
     const searchResults = await axios.get(`http://www.omdbapi.com/?apikey=302d737f&s=${this.state.searchQuery}`);
@@ -39,16 +42,20 @@ class App extends Component {
     this.setState({ searchQuery: "" })
   };
 
+
+  // Function that handles the input form
   handleChange = (e) => {
     this.setState({ searchQuery: e.target.value })
   }
 
+
+  //Function that removes a selected film based on its imdbID 
   removeFilm = (imdbID) => {
     const updatedWatchList = this.state.watchList.filter(movie => movie.imdbID !== imdbID);
     this.setState({ watchList: updatedWatchList });
   }
 
-  removeAll = (e) => {
+  removeAll = () => {
     this.setState( { watchList: [] })
   }
 
@@ -80,8 +87,10 @@ class App extends Component {
 
     return (
       <div>
+        <body>
+          <header>Movie Watch List App</header>
 
-        <WatchList 
+        <WatchList className="watchlist"
         data={this.props.data} 
         searchResults={this.state.searchResults} 
         watchList={this.state.watchList}
@@ -89,13 +98,13 @@ class App extends Component {
         handleRatingChange={this.handleRatingChange}
         handleInputChange={this.handleInputChange}
         newRating={this.state.ratingInput}/>
-        <Search 
+        <Search className="search"
         searchQuery={this.state.searchQuery} 
         handleSearch={this.handleSearch} 
         handleChange={this.handleChange}/>
 
-        <Remove removeAll={this.removeAll}/>
-        
+        <Remove className="remove" removeAll={this.removeAll}/>
+        </body>
       </div>
     );
   }

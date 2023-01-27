@@ -2,15 +2,17 @@ import React from "react";
 import MovieListDetails from "./MovieListDetails";
 import EditList from "./EditList";
 import Checkbox from "./Checkbox";
+import './App'
 
 const WatchList = (props) => {
   return (
-    <div>
+    <div className="watchlist-item">
       {props.watchList.map((film, id) => {
         return (
           <div key={id}>
             <MovieListDetails film={film} />
-            <EditList
+            <Checkbox />
+            <EditList className="edit-list-container"
               film={film}
               imdbID={film.imdbID}
               removeFilm={props.removeFilm}
@@ -18,7 +20,6 @@ const WatchList = (props) => {
               handleInputChange={props.handleInputChange}
               newRating={props.newRating}
             />
-            <Checkbox />
           </div>
         );
       })}

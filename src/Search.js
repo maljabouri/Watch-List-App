@@ -3,12 +3,13 @@ import React from "react";
 const Search = (props) => {
   return (
   <div>
-    <form onSubmit={props.handleSearch}>
-    <input type="text" 
+    <h1>Search for a film to add it to your watchlist!</h1>
+    <form className="search-form" onSubmit={props.handleSearch}>
+    <input type="text" className="search-input"
     value={props.searchQuery}
     onChange={props.handleChange}/>
 
-    <button type="submit" onClick={props.clearForm}>Search</button>
+    <button className="search-button" type="submit" onClick={props.clearForm}>Search</button>
     </form>
   </div>
 
