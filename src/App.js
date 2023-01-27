@@ -21,14 +21,14 @@ class App extends Component {
   // Asyncronous function that fetches the first result (of many) from the API and stores it in the watchList state
   handleSearch = async (e) => {
     e.preventDefault();
-    const searchResults = await axios.get(`http://www.omdbapi.com/?apikey=302d737f&s=${this.state.searchQuery}`);
+    const searchResults = await axios.get(`https://www.omdbapi.com/?apikey=302d737f&s=${this.state.searchQuery}`);
   
     // Get the imdbID of the selected movie
     const selectedMovie = searchResults.data.Search[0];
     const imdbID = selectedMovie.imdbID;
   
     // Make another API call using the imdbID as a parameter
-    const movieDetails = await axios.get(`http://www.omdbapi.com/?apikey=302d737f&i=${imdbID}`);
+    const movieDetails = await axios.get(`https://www.omdbapi.com/?apikey=302d737f&i=${imdbID}`);
   
     // Use the response data to update the watchList state and then reset the searchQuery state back to an empty string
     const updatedMovie = {
