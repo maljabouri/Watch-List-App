@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import WatchList from './Watchlist';
-import Recommended from "./Recommended";
 import Search from "./Search"
 import axios from 'axios';
 
@@ -86,7 +85,6 @@ class App extends Component {
         handleRatingChange={this.handleRatingChange}
         handleInputChange={this.handleInputChange}
         newRating={this.state.ratingInput}/>
-        <Recommended />
         <Search 
         searchQuery={this.state.searchQuery} 
         handleSearch={this.handleSearch} 
