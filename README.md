@@ -74,3 +74,4 @@ following:
 - Have suggestions based on some combination of values stored in the watch list
 - Fix the bug causing every set rating input field to fill in at the same time (move classes around probably)
 - Make a proper effort on the CSS for the App(limited due to time constraints). 
+- Use routing to have different pages for the App (Favourites/Seen/Unseen/Recommended)
