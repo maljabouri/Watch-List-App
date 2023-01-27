@@ -1,71 +1,76 @@
-# Getting Started with Create React App
+# Movie Watch List React App - GA Project 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can find my deployed project [here](https://maljabouri.github.io/Watch-List-App/)
 
-## Available Scripts
+## Project Description
 
-In the project directory, you can run:
+The goal of this project was to provide an App in react that would allow users to create a list 
+of movies that they want to watch/rewatch. 
 
-### `npm start`
+It was built in React after 1 week of learning how to use the library.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Brief
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technical Requirements
+The user must be able to:
+- Add a new item to a list
+- Mark the item as complete/favorite/(watch, read, listen) later/flag/etc
+- Edit an item from a list
+- Remove an item from a list
+- Clear/delete all items
+- Clear/delete only marked items
+- Fetch data from at least one 3rd party API using Axios or fetch.
+- Make frequent Git commits with descriptive messages, explaining your commit.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## User Stories
 
-### `npm run build`
+As a user I should be able to: 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- search for a film and add it to the list
+- have some information about each film displayed
+- remove films from my list
+- clear my whole list
+- mark films as seen
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Build Process
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Planning
 
-### `npm run eject`
+I started off by making a wireframe for how I wanted my app to look, including some features I had hoped
+to implement. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![wireframe](https://i.imgur.com/dFzfWK8.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I coupled this with an initial plan of how to structure my components.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![reactplan1](https://i.imgur.com/aAoNApt.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Difficulties
 
-## Learn More
+The first problem I ran into was my API search was returning multiple results. These results were returned as an array 
+of objects.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I initially tried to play around with the React Autocomplete component to render a drop down with all the matching searches
+but I was not successful in implenting the feature.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+So I decided to instead take only the first result (which from my testing seemed to be the one that most closely matched the search)
+and then map it into a state so I could render my list. I then noticed my API wasn't returning all the values that were available
+in postman, that I had planned to use for my App. My solution for this was to fetch from the API again, using the unique 
+identifier imdbID returned for the film and then fetching the specific properties I wanted for my films and remapping them
+into the state I would use to render my list.
 
-### Code Splitting
+![myfunction](https://i.imgur.com/6bDiKcd.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I decided to restructure my App halfway through and quickly realised it wasn't going to be an easy fix, however the new 
+structure made a lot more sense to me so I dealt with all the debugging to move from my initially planned structure to the
+following: 
 
-### Analyzing the Bundle Size
+![reactplan2](https://i.imgur.com/i1BqhzY.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Future Improvements
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Watch-List-App
+- Figure out a way to let the user pick from all the returned results.
+- Have suggestions based on some combination of values stored in the watch list
+- Fix the bug causing every set rating input field to fill in at the same time (move classes around probably)
+- Make a proper effort on the CSS for the App(limited due to time constraints). 
