@@ -1,6 +1,7 @@
 import React from "react";
 import MovieListDetails from "./MovieListDetails";
 import EditList from "./EditList";
+import Checkbox from "./Checkbox";
 
 const WatchList = (props) => {
   return (
@@ -17,6 +18,7 @@ const WatchList = (props) => {
               handleInputChange={props.handleInputChange}
               newRating={props.newRating}
             />
+            <Checkbox />
           </div>
         );
       })}
