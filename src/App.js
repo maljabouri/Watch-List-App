@@ -72,19 +72,24 @@ class App extends Component {
 
   handleRatingChange = (e, id, newRating) => {
     e.preventDefault();
-    if(newRating < 0 || newRating > 100) {
+    if (newRating < 0 || newRating > 100) {
       alert("Please enter a value between 0 and 100");
     } else {
       const updatedWatchList = this.state.watchList.map(film => {
-        if(film.imdbID === id) {
+        if (film.imdbID === id) {
+          if (!film.Ratings) {
+            film.Ratings = [];
+          }
+          if (!film.Ratings[2]) {
+            film.Ratings[2] = {};
+          }
           film.Ratings[2].Value = newRating + "/100";
         }
         return film;
       });
       this.setState({ watchList: updatedWatchList });
-      this.setState({ ratingInput: ""})
     }
-  }
+  };
 
 
   render() {
