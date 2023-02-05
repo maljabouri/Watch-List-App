@@ -70,26 +70,21 @@ class App extends Component {
   // to the "id" argument passed in. Then, it updates the "Value" property of the film object's "Ratings" array
   // This allows the user to set their own rating of the film.
 
-  handleRatingChange = (e, id) => {
+  handleRatingChange = (e, id, newRating) => {
     e.preventDefault();
-    const newRating = this.state.ratingInput; 
     if(newRating < 0 || newRating > 100) {
       alert("Please enter a value between 0 and 100");
     } else {
       const updatedWatchList = this.state.watchList.map(film => {
         if(film.imdbID === id) {
-          film.Ratings[2].Value = newRating+"/100";
+          film.Ratings[2].Value = newRating + "/100";
         }
         return film;
       });
       this.setState({ watchList: updatedWatchList });
       this.setState({ ratingInput: ""})
-      
     }
-    
-
   }
-
 
 
   render() {
