@@ -18,7 +18,7 @@ const MovieListDetails = ({ film }) => {
                 </div>
               </Col>
               <Col>
-                <img src={film.Poster} />
+                <img src={film.Poster} alt="poster"/>
               </Col>
             </Row>
           </Container>

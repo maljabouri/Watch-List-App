@@ -1,6 +1,6 @@
 import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 const Search = (props) => {
   return (
