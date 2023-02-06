@@ -31,13 +31,7 @@ header h1 {
   margin: 10px;
 }
 
-.watchlist-item {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  padding: 10px;
-  width: 30%;
-  margin-bottom: 10px;
-}
+
 
 .watchlist-item h1 {
   margin: 0;

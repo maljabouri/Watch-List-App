@@ -4,6 +4,8 @@ import Search from "./Search"
 import axios from 'axios';
 import Remove from './Remove';
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -22,21 +24,21 @@ class App extends Component {
   handleSearch = async (e) => {
     e.preventDefault();
     const searchResults = await axios.get(`https://www.omdbapi.com/?apikey=302d737f&s=${this.state.searchQuery}`);
-  
+
     // Get the imdbID of the selected movie
     const selectedMovie = searchResults.data.Search[0];
     const imdbID = selectedMovie.imdbID;
-  
+
     // Make another API call using the imdbID as a parameter
     const movieDetails = await axios.get(`https://www.omdbapi.com/?apikey=302d737f&i=${imdbID}`);
-  
+
     // Use the response data to update the watchList state and then reset the searchQuery state back to an empty string
     const updatedMovie = {
       ...selectedMovie,
       Plot: movieDetails.data.Plot,
       Ratings: movieDetails.data.Ratings
     }
-  
+
     this.setState({ searchResults: searchResults.data.Search });
     this.setState({ watchList: [...this.state.watchList, updatedMovie] });
     this.setState({ searchQuery: "" })
@@ -54,12 +56,12 @@ class App extends Component {
     const updatedWatchList = this.state.watchList.filter(movie => movie.imdbID !== imdbID);
     this.setState({ watchList: updatedWatchList });
   }
-  
+
   // Function that removes all films stored on the watch list app
   removeAll = () => {
-    this.setState( { watchList: [] })
+    this.setState({ watchList: [] })
   }
-  
+
   // Function that handles the input for updating the rating, sets the state ratingInput to whatever value the user enters
   handleInputChange = (e) => {
     this.setState({ ratingInput: e.target.value });
@@ -95,26 +97,34 @@ class App extends Component {
   render() {
 
     return (
-      <div>
-        <body>
-          <header>Movie Watch List App</header>
-
-        <WatchList className="watchlist"
-        data={this.props.data} 
-        searchResults={this.state.searchResults} 
-        watchList={this.state.watchList}
-        removeFilm={this.removeFilm}
-        handleRatingChange={this.handleRatingChange}
-        handleInputChange={this.handleInputChange}
-        newRating={this.state.ratingInput}/>
-        <Search className="search"
-        searchQuery={this.state.searchQuery} 
-        handleSearch={this.handleSearch} 
-        handleChange={this.handleChange}/>
-
-        <Remove className="remove" removeAll={this.removeAll}/>
-        </body>
-      </div>
+      <body>
+        <header>Movie Watch List App</header>
+        <Container>
+          <Row>
+            <Col>
+            <Row>
+              <Search className="search"
+                searchQuery={this.state.searchQuery}
+                handleSearch={this.handleSearch}
+                handleChange={this.handleChange} />
+              </Row>
+              <Row>
+              <Remove className="remove" removeAll={this.removeAll} />
+              </Row>
+            </Col>
+            <Col>
+              <WatchList className="watchlist"
+                data={this.props.data}
+                searchResults={this.state.searchResults}
+                watchList={this.state.watchList}
+                removeFilm={this.removeFilm}
+                handleRatingChange={this.handleRatingChange}
+                handleInputChange={this.handleInputChange}
+                newRating={this.state.ratingInput} />
+            </Col>
+          </Row>
+        </Container>
+      </body>
     );
   }
 }

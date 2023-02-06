@@ -6,7 +6,7 @@ import './App'
 
 const WatchList = (props) => {
   return (
-    <div className="watchlist-item">
+    <div>
       {props.watchList.map((film, id) => {
         return (
           <div key={id}>
