@@ -39,10 +39,10 @@ The Watch List App is a React-based web application that uses the OMDb API to se
 
 ## Technologies Used
 
--React
--JavaScript
--CSS
--OMDb API
+ - React
+ - JavaScript
+ - CSS
+ - OMDb API
 
 ## Build Process
 
