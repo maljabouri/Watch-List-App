@@ -33,6 +33,17 @@ As a user I should be able to:
 - clear my whole list
 - mark films as seen
 
+### Overview & Concept
+
+The Watch List App is a React-based web application that uses the OMDb API to search for movies and TV shows. Users can search for a movie or TV show by entering a keyword in the search bar. The app then returns a list of matching results. Users can then click on a result to view additional details about the selected movie or TV show, and choose to add it to their watch list.
+
+## Technologies Used
+
+-React
+-JavaScript
+-CSS
+-OMDb API
+
 ## Build Process
 
 ### Planning
@@ -46,32 +57,37 @@ I coupled this with an initial plan of how to structure my components.
 
 ![reactplan1](https://i.imgur.com/aAoNApt.png)
 
-### Difficulties
+### Approach Taken
 
-The first problem I ran into was my API search was returning multiple results. These results were returned as an array 
-of objects.
+The Watch List App was built using React, with a focus on modular components and clean, reusable code. The main code files were located in the "src" folder, and the app was structured using a container/component architecture. This allowed for state and props to be passed between components as needed.
 
-I initially tried to play around with the React Autocomplete component to render a drop down with all the matching searches
-but I was not successful in implenting the feature.
+To handle the issue of the API search returning multiple results, the "handleSearch" function in the "Search" component was updated to take only the first result from the API response. This was achieved using the "array.slice()" method to extract the first item from the array of search results returned by the API. The resulting movie or TV show object was then mapped into the app's state and rendered as a result card using the "WatchList" component.
 
-So I decided to instead take only the first result (which from my testing seemed to be the one that most closely matched the search)
-and then map it into a state so I could render my list. I then noticed my API wasn't returning all the values that were available
-in postman, that I had planned to use for my App. My solution for this was to fetch from the API again, using the unique 
-identifier imdbID returned for the film and then fetching the specific properties I wanted for my films and remapping them
-into the state I would use to render my list.
+![snippet1](https://i.imgur.com/YsriyT8.png)
 
-![myfunction](https://i.imgur.com/6bDiKcd.png)
+I then noticed my API wasn't returning all the values that were available in postman, that I had planned to use for my App. My solution for this was to fetch from the API again, using the unique identifier imdbID returned for the film and then fetching the specific properties I wanted for my films and remapping them into the state I would use to render my list.
 
-I decided to restructure my App halfway through and quickly realised it wasn't going to be an easy fix, however the new 
-structure made a lot more sense to me so I dealt with all the debugging to move from my initially planned structure to the
-following: 
+To implement the app's watch list feature, a "WatchList" component was created to display a list of all the movies and TV shows that the user has added. This component renders individual "MovieListDetails" components for each item in the watch list. 
+
+![snippet2](https://i.imgur.com/I8aKTUv.png)
+
+To remove a movie or TV show from the watch list, the user clicks on the "remove" button on the "EditList" component. This button triggers the "removeFilm" function, which removes the selected movie or TV show object from the app's state.
+
+![snippet3](https://i.imgur.com/MmFO7nF.png)
+
+During development, the app's structure was restructured midway through to a container/component architecture. This allowed for cleaner, reusable code and more modular components. The new structure also made it easier to pass state and props between components, and made the app's logic easier to reason about.
 
 ![reactplan2](https://i.imgur.com/i1BqhzY.png)
 
-## Future Improvements
+Overall, the approach taken for the Watch List App was to build a clean, modular, and reusable codebase using React. The app's features were implemented using the appropriate React components and programming patterns, and complex issues were addressed through a thoughtful and systematic approach.
 
-- Figure out a way to let the user pick from all the returned results.
-- Have suggestions based on some combination of values stored in the watch list
-- Fix the bug causing every set rating input field to fill in at the same time (move classes around probably)
-- Make a proper effort on the CSS for the App(limited due to time constraints). 
-- Use routing to have different pages for the App (Favourites/Seen/Unseen/Recommended)
+
+### Bugs, Blockers & Wins
+
+The main blockers during development included the issue of API search returning multiple results, the API not returning all values I wanted for the films, and the restructure of the app's structure midway through. The biggest wins were overcoming these complications using creative problem solving highlighted above (although in hindsight there were probably better approaches). 
+
+
+### Future Features + Key Learnings
+
+Future features for the Watch List App include implementing authentication, allowing users to create an account and save their watch list across sessions. Key learnings from the development process included working with APIs, structuring modular components, and troubleshooting and debugging complex issues.
+
